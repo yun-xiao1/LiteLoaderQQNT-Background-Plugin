@@ -1,99 +1,70 @@
-# LiteLoaderQQNT - background-plugin
+# LiteLoaderQQNT Background Plugin
 
-## yun-xiao1 fork 说明
+这是 `yun-xiao1/LiteLoaderQQNT-Background-Plugin` 的维护 fork，基于原项目 `xh321/LiteLoaderQQNT-Background-Plugin` 修改。
 
-这是 `yun-xiao1/LiteLoaderQQNT-Background-Plugin` 的维护分支，基于原项目 `xh321/LiteLoaderQQNT-Background-Plugin` 修改。
+插件用于在 QQNT 聊天界面展示背景图片或视频，并提供部分界面透明化/毛玻璃效果。
 
-当前分支已处理“启用部分组件毛玻璃模糊效果后，点击聊天输入区截图按钮导致截图菜单显示异常”的问题：毛玻璃效果不再作用到 `.chat-input-area` 和 `.main-area__footer`，以避免影响截图菜单渲染；其它区域的毛玻璃效果保持不变。
+## 使用环境
 
-插件包信息已指向本 fork：
+当前维护版主要按下面环境处理和测试：
 
-- 仓库：`yun-xiao1/LiteLoaderQQNT-Background-Plugin`
-- 分支：`master`
-- Release 文件：`Background.zip`
+- QQNT：`9.9.20-37051` x64
+- LiteLoaderQQNT：`1.2.4`
+- 插件版本：`0.2.24`
+- 系统：Windows
 
-LiteLoaderQQNT插件，用于自动轮换QQNT的背景图片或者视频，并自带一些CSS透明度优化（参考自[LiteLoaderQQNT-Test-Theme](https://github.com/mo-jinran/test-theme)）。
-使用前需要安装[LiteLoaderQQNT](https://github.com/mo-jinran/LiteLoaderQQNT)，并在QQNT新版上使用。
+`manifest.json` 仍保留 `win32`、`darwin`、`linux` 平台声明，但本 fork 的修复主要针对 Windows QQNT 旧版环境。QQ 高版本如果界面结构变化较大，可能仍会有兼容问题。
 
-强烈建议加TG频道 https://t.me/+UwFw2Ff-8scyOWY1 来蹲更新/公告（老频道被爆破了，请加新频道）
+## 本 fork 改动
 
-目前测试版本：9.9.19-35469可用（侧边栏和图标颜色不太对，修复优先级不高）
+- 插件仓库信息已改为 `yun-xiao1/LiteLoaderQQNT-Background-Plugin`。
+- 修复开启“是否对部分组件启用毛玻璃模糊效果”后，点击聊天输入区截图按钮导致截图菜单显示异常的问题。
+- 修复方式：毛玻璃效果不再作用到 `.chat-input-area` 和 `.main-area__footer`，避免影响截图菜单渲染；其它区域的毛玻璃效果保持不变。
 
-## 使用方法
+## 安装方法
 
-直接在本仓库Release中下载zip，然后在LiteLoaderQQNT配置界面中选择插件压缩包导入即可
+1. 下载本仓库 Release 中的 `Background.zip`。
+2. 打开 QQ 的 LiteLoaderQQNT 插件管理页面。
+3. 选择导入插件压缩包，导入 `Background.zip`。
+4. 重启 QQ。
 
-也可以使用插件商店类应用安装，如 https://github.com/ltxhhz/LL-plugin-list-viewer
+也可以使用插件商店类工具安装，但请确认插件来源指向本 fork：
 
-**版本不兼容提示**：从0.1.18起，插件已适配1.0版本以上`LiteLoaderQQNT`框架，同时不再兼容旧版框架，请遵循[安装方法](https://liteloaderqqnt.github.io/guide/install.html)更新框架。
-
-**版本不兼容提示**：从0.1.24起，插件的背景视频功能建议使用1.0.3及以上`LiteLoaderQQNT`框架，请遵循[安装方法](https://liteloaderqqnt.github.io/guide/install.html)更新框架。
-
-**版本提示**：自0.1.25起，配置文件和默认的图片文件夹从插件根目录移动至`LiteLoaderQQNT数据目录`中的background文件夹中，更新此版本后请手动移动config.json（和图片文件夹，如果你往里面存了图片）到对应路径。仅从低版本升级上来的用户需要操作，首次安装本版本不需要。
-
-**版本提示**：自0.1.29起，网络图片会自动保存到**插件数据目录（`LiteLoaderQQNT数据目录\background`）**下面的tmp文件夹，这样在开启多窗体共用背景的情况下可以避免多个窗体重复请求同样的图片。并且如果你随机到了你喜欢的图片，可以前往文件夹里手动复制，后期版本会提供保存到指定目录按钮。
-
-**插件兼容提示**： [MSpring主题](https://github.com/MUKAPP/LiteLoaderQQNT-MSpring-Theme)与本插件一起使用时，建议设置`MSpring主题`背景透明度为最低（全透明），否则可能会和本插件提供的透明度重叠导致出现显示问题。
-
-可搭配[MSpring主题](https://github.com/MUKAPP/LiteLoaderQQNT-MSpring-Theme)实现更佳效果哦~
-
-- 启动QQ后会自动写入默认配置文件到**插件数据目录（`LiteLoaderQQNT数据目录\background`）下面的`config.json`**，然后你对配置文件做的任何修改都会被插件实时应用（详见后文）。若无必要，不建议手动修改`config.json`；
-- 你可以通过QQ设置里的背景插件设置界面对插件进行设置（推荐这种方法，更方便，也能实时应用）。
-
-**如果出现错乱、设置修改后无法应用或无法加载背景的情况，请确认`config.json`是否被正确配置；若不能确定，可先前往设置界面恢复默认设置；如果连设置界面也进不去，那就手动删除`config.json`后重启NTQQ再试（恢复默认后无背景，请去设置背景后再看看有没有问题），若还有问题请发ISSUE。**
-
-默认加载背景的路径是**插件数据目录（`LiteLoaderQQNT数据目录\background`）**下面的imgs文件夹，在QQ的设置里可以切换背景的目录，保存后立刻生效，目前会读取目录里（包含子文件夹）的一些常见格式的图片或视频文件，如下：
-
-图片：`const allowedImgExt= ["JPG", "BMP", "PNG", "APNG", "WEBP", "JPEG", "AVIF", "GIF"];  `
-
-视频：`const allowedVideoExt = ["MP4", "WEBM", "OGG"];`
-
-背景默认是居中适应，所以如果比例不对可能会不好看，尽量选择横着的图片吧~
-
-**目前已支持从网络API获取图片和视频（API支持直接返回图片的，也支持返回JSON的），详见下面的配置说明。**
-
-现在深色浅色模式会根据`@media`媒体选择器自适应啦~
-
-目前还很简陋，代码也比较粗糙，但能用！
+`yun-xiao1/LiteLoaderQQNT-Background-Plugin`
 
 ## 配置说明
 
-**注意：所有涉及到路径的字符串中的斜杠都是正斜杠（/）。**
+启动 QQ 后，插件会在 LiteLoaderQQNT 数据目录下创建背景插件配置与资源目录。
 
-*所有直接对配置文件的在重启NTQQ后才会生效。*
+常用配置：
 
-imgDir（对应配置界面`本地背景文件夹路径`）：从哪个文件夹自动读取图片/视频文件，仅会读取一级的图片/视频，并不会递归读取子文件夹的哦。如果文件夹里同时有图片和视频，则都可能随机到。（特别注意：视频编码需要兼容，CHROME支持的大部分都支持，格式只支持OGG/WEBM/MP4）。默认：`插件数据目录下面的imgs文件夹`（`LiteLoaderQQNT数据目录\background`）。
+- 本地背景文件夹：选择用于轮播的图片或视频目录。
+- 网络背景 API：从网络接口读取背景图片或视频。
+- 自动轮播：按设置的时间间隔随机切换背景。
+- 多窗口共用背景：多个 QQ 窗口使用同一背景。
+- 毛玻璃模糊效果：对部分界面组件启用模糊效果。
 
-imgSaveDir（对应配置界面`保存背景图的路径`）：如果你点击了主界面的保存背景图按钮，背景图会保存到哪个文件夹。注意：仅针对图片来源为网络图片时有效。默认：`插件数据目录下面的imgs文件夹`（`LiteLoaderQQNT数据目录\background`）。
+支持的常见图片格式：
 
-imgApi（对应配置界面`网络背景API链接`）：从哪个api获取网络图片或视频，可选，可以没有这一项，但背景来源为网络图片/网络视频时该项必填。从网络获取的图片/视频必须没有防盗链，可通过GET直接访问（也就是链接放到浏览器里直接就能打开看到），暂不支持JSON格式返回的API（后续将支持）。（特别注意：视频编码需要兼容，CHROME支持的大部分都支持，格式只支持OGG/WEBM/MP4）。默认：`""`。
+`JPG`、`JPEG`、`PNG`、`BMP`、`APNG`、`WEBP`、`AVIF`、`GIF`
 
-imgApiJsonPath（对应配置界面`网络背景API JSON路径`）：假设 API 返回格式为 JSON，则需要配置此项来获取原图直链。请查看[帮助文档](./API-JSON路径帮助.md)来辅助配置。默认：`""`。
+支持的常见视频格式：
 
-apiType（配置界面会自动设置该项）：api返回的文件类型，是图片或者视频。可选值：img→图片；video→视频。如果选择错误将导致背景无法加载。默认：`img`。
+`MP4`、`WEBM`、`OGG`
 
-imgFile（对应配置界面`本地背景路径`）：背景设置为哪个单独文件（可以是图片或者视频），可选，可以没有这一项，但背景来源为文件时该项必填。默认：`""`。
+视频能否播放取决于 QQNT 内置 Chromium 对编码的支持。
 
-imgSource（对应配置界面`修改背景来源`）：图片来源类型，是文件夹轮播，还是单个文件，还是从网络api获取图片或者获取视频。你还可以取消背景图，仅使用本插件提供的界面透明功能。注意：如果选择从网络API获取，则必须正确选择是网络图片还是网络视频，否则背景会空白。可选值：none→无背景图；folder→文件夹；file→单个文件；network→网络图片；network_video→网络视频。默认：`folder`。
+## 已知说明
 
-refreshTime（对应配置界面`背景更新间隔`）：多久随机更新一次背景，单位秒。默认：`600`（10分钟）。
+- 和其它主题/透明化插件一起使用时，可能会出现透明度叠加或显示异常。
+- 如果设置页面打不开、背景无法加载，先尝试在插件设置里恢复默认配置。
+- 如果从很旧的版本升级，旧配置可能需要手动迁移到 LiteLoaderQQNT 数据目录下的 `background` 文件夹。
 
-isCommonBg（对应配置界面`是否对所有窗口共用背景`）：所有窗口的背景是否一致，这在你选择背景图来源为文件夹或者网络API时有效，其他情况时此项无效。默认：`true`。
+## 来源
 
-isAutoRefresh（对应配置界面`是否自动轮播背景`）：是否自动轮播背景。若关闭，则每次NTQQ启动仅随机一次图片/视频，后续除非手动点击按钮更新，否则不再更新。默认：`true`。
+- 原项目：`xh321/LiteLoaderQQNT-Background-Plugin`
+- 当前 fork：`yun-xiao1/LiteLoaderQQNT-Background-Plugin`
 
-globalTransparentOffset（对应配置界面`调整主背景图覆盖层透明度`）：用来调整背景图在聊天框呈现的时候，上面一层覆盖层的透明度（这一层的作用是避免背景图太亮导致看不清字），默认是中间：0。往左边调是负数，也就是减少透明度（更加透明），往右边是正数，增加透明度（更加不透明）。调整在滑块就位后实时保存与生效。默认：`0`。
+## 协议
 
-enableBackgroundForMediaViewer（对应配置界面`是否对媒体预览器生效背景`）：媒体预览器是否应用背景和透明度（比如QQ内置的图片预览器）。设置为`false`则是QQ原来的样子，否则会带有背景图和透明度。修改配置后不会对当前已打开的预览器生效，需要重新点开一次预览器才会生效。默认：`true`。
-
-enableFrostedGlassStyle（对应配置界面`是否对部分组件启用毛玻璃模糊效果`）：是否对部分组件启用毛玻璃模糊效果，若不喜欢可以关闭。你可以通过开关来对比效果，因为配置修改是实时生效的。默认：`true`。
-
-overrideImgFile（暂无配置界面对应）：无论上面背景来源设置如何，强制使用本参数提供的背景文件路径作为背景图（可以是图片或者视频）（特别注意：视频编码需要兼容，CHROME支持的大部分都支持，格式只支持OGG/WEBM/MP4）。这个参数是用来配合未来手动选择文件夹内某个文件作为背景使用的（目前该功能还没有实装）。默认：`""`。
-
-apiOptions对象：用来配置来源是网络视频的请求。
-
-​	useCache（对应配置界面`是否启用视频缓存`）：若来源是网络视频，是否使用缓存。如果你设置的视频地址是API（也就是每次请求视频不一样），请务必设置为`false`，否则，缓存可能导致视频不会更新*（原理：每次请求会带上一个t=时间戳的参数，这样就能避免缓存）*；若你设置的API地址为单个视频，每次请求均一样，可以设置为`true`。目前网络图片均会自动保存到本地，所以本选项对网络图片无效。默认：`false`。
-
-## 协议及免责
-
-MIT | 禁止用于任何非法用途，插件开发属学习与研究目的，仅自用，未提供给任何第三方使用。任何不当使用导致的任何侵权问题责任自负。
+MIT
