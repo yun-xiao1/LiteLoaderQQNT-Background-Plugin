@@ -1,5 +1,17 @@
 # LiteLoaderQQNT - background-plugin
 
+## yun-xiao1 fork 说明
+
+这是 `yun-xiao1/LiteLoaderQQNT-Background-Plugin` 的维护分支，基于原项目 `xh321/LiteLoaderQQNT-Background-Plugin` 修改。
+
+当前分支已处理“启用部分组件毛玻璃模糊效果后，点击聊天输入区截图按钮导致截图菜单显示异常”的问题：毛玻璃效果不再作用到 `.chat-input-area` 和 `.main-area__footer`，以避免影响截图菜单渲染；其它区域的毛玻璃效果保持不变。
+
+插件包信息已指向本 fork：
+
+- 仓库：`yun-xiao1/LiteLoaderQQNT-Background-Plugin`
+- 分支：`master`
+- Release 文件：`Background.zip`
+
 LiteLoaderQQNT插件，用于自动轮换QQNT的背景图片或者视频，并自带一些CSS透明度优化（参考自[LiteLoaderQQNT-Test-Theme](https://github.com/mo-jinran/test-theme)）。
 使用前需要安装[LiteLoaderQQNT](https://github.com/mo-jinran/LiteLoaderQQNT)，并在QQNT新版上使用。
 
