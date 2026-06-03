@@ -1273,9 +1273,7 @@ function onLoad() {
         .forward-ops .op-icon,
         .radio-tab,
         .sys-notify-card,
-        .recent-contact,
-        .chat-input-area,
-        .main-area__footer {
+        .recent-contact {
           backdrop-filter: brightness(110%) saturate(120%) blur(8px);
         }
       }
@@ -1293,9 +1291,7 @@ function onLoad() {
         .forward-ops .op-icon,
         .radio-tab,
         .sys-notify-card,
-        .recent-contact,
-        .chat-input-area,
-        .main-area__footer {
+        .recent-contact {
           backdrop-filter: brightness(90%) saturate(120%) blur(8px);
         }
       }
