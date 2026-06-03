@@ -67,4 +67,10 @@
 
 ## 协议
 
-MIT
+本项目基于原项目的 MIT License 分发。
+
+本 fork 及其发布包会保留原作者的版权声明与许可协议：
+
+- Copyright (c) 2023 XiaoHe321
+- License: MIT
+- 许可协议全文见仓库中的 `LICENSE` 文件。
