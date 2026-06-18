@@ -1269,7 +1269,7 @@ function onLoad() {
         .self-avatar-mini-card,
         .sidebar,
         .forward-msg,
-        .normal-file,
+        .msg-content-container .normal-file,
         .forward-ops .op-icon,
         .radio-tab,
         .sys-notify-card,
@@ -1287,13 +1287,27 @@ function onLoad() {
         .self-avatar-mini-card,
         .sidebar,
         .forward-msg,
-        .normal-file,
+        .msg-content-container .normal-file,
         .forward-ops .op-icon,
         .radio-tab,
         .sys-notify-card,
         .recent-contact {
           backdrop-filter: brightness(90%) saturate(120%) blur(8px);
         }
+      }
+
+      .chat-input-area,
+      .chat-input-area *,
+      .main-area__footer,
+      .main-area__footer *,
+      .msg-input,
+      .msg-input *,
+      .operation,
+      .operation *,
+      .chat-func-bar,
+      .chat-func-bar * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
       }
       `;
 
@@ -1713,7 +1727,6 @@ function onLoad() {
 
         .chat-func-bar{
           background-color: rgb(0 0 0 / 40%)!important;
-          padding-bottom: 8px!important;
         }
 
         .sidebar{
@@ -2106,7 +2119,6 @@ function onLoad() {
   
         .chat-func-bar{
           background-color: rgb(255 255 255 / 40%)!important;
-          padding-bottom: 8px!important;
         }
   
         .sidebar{
